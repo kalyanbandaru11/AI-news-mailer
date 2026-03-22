@@ -13,26 +13,25 @@ RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
 
 
 def get_news():
-    # last 24 hours filter
-    yesterday = (datetime.utcnow() - timedelta(days=1)).strftime('%Y-%m-%d')
-
     url = (
-    "https://newsapi.org/v2/everything?"
-    "q=AI OR artificial intelligence OR ChatGPT OR OpenAI"
-    "&sortBy=publishedAt"
-    "&language=en"
-    "&pageSize=20"
-    f"&apiKey={NEWS_API_KEY}"
-)
+        "https://newsapi.org/v2/top-headlines?"
+        "category=technology"
+        "&language=en"
+        "&pageSize=20"
+        f"&apiKey={NEWS_API_KEY}"
+    )
 
     response = requests.get(url)
     data = response.json()
 
-    articles = data.get("articles", [])
+    print("STATUS:", data.get("status"))
+    print("TOTAL RESULTS:", data.get("totalResults"))
 
-    print("Total articles fetched:", len(articles))  # DEBUG
+    articles = data.get("articles", [])
+    print("ARTICLES LENGTH:", len(articles))
 
     news_list = []
+
     for article in articles:
         title = article.get("title")
         description = article.get("description")
@@ -42,13 +41,13 @@ def get_news():
 
         description = description or "No description available"
 
+        # ❗ REMOVED AI FILTER
         news_list.append(f"{title} - {description}")
 
         if len(news_list) == 5:
             break
 
     return news_list
-
 
 def send_email(content):
     try:
