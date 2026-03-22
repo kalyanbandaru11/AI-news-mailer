@@ -32,8 +32,10 @@ def get_news():
         description = article.get("description")
 
         # skip bad/empty data
-        if not title or not description:
+        if not title:
             continue
+
+        description = description or "No description available"
 
         news_list.append(f"{title} - {description}")
 
@@ -66,14 +68,15 @@ def format_news(news_list):
     content += "\n-- End of Report --"
     return content
 
-
 def job():
     print("Running AI news job...")
 
     try:
         news = get_news()
+
         if not news:
-            print("No news found")
+            print("No news found, sending fallback email")
+            send_email("No major AI news found in the last 24 hours.")
             return
 
         summary = format_news(news)
