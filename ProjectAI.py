@@ -14,18 +14,15 @@ RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
 
 def get_news():
     url = (
-        "https://newsapi.org/v2/top-headlines?"
-        "category=technology"
-        "&language=en"
-        "&pageSize=20"
-        f"&apiKey={NEWS_API_KEY}"
+        "https://gnews.io/api/v4/search?"
+        "q=AI OR artificial intelligence OR ChatGPT"
+        "&lang=en"
+        "&max=10"
+        f"&apikey={NEWS_API_KEY}"
     )
 
     response = requests.get(url)
     data = response.json()
-
-    print("STATUS:", data.get("status"))
-    print("TOTAL RESULTS:", data.get("totalResults"))
 
     articles = data.get("articles", [])
     print("ARTICLES LENGTH:", len(articles))
@@ -41,7 +38,6 @@ def get_news():
 
         description = description or "No description available"
 
-        # ❗ REMOVED AI FILTER
         news_list.append(f"{title} - {description}")
 
         if len(news_list) == 5:
