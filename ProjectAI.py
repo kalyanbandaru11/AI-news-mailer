@@ -17,14 +17,13 @@ def get_news():
     yesterday = (datetime.utcnow() - timedelta(days=1)).strftime('%Y-%m-%d')
 
     url = (
-        "https://newsapi.org/v2/everything?"
-        "q=AI OR artificial intelligence OR ChatGPT OR OpenAI"
-        f"&from={yesterday}"
-        "&sortBy=publishedAt"
-        "&language=en"
-        "&pageSize=20"
-        f"&apiKey={NEWS_API_KEY}"
-    )
+    "https://newsapi.org/v2/everything?"
+    "q=AI OR artificial intelligence OR ChatGPT OR OpenAI"
+    "&sortBy=publishedAt"
+    "&language=en"
+    "&pageSize=20"
+    f"&apiKey={NEWS_API_KEY}"
+)
 
     response = requests.get(url)
     data = response.json()
