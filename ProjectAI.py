@@ -15,16 +15,29 @@ RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
 def get_news():
     url = (
         "https://gnews.io/api/v4/search?"
-        "q=AI OR artificial intelligence OR ChatGPT"
+        "q=AI"
         "&lang=en"
         "&max=10"
         f"&apikey={NEWS_API_KEY}"
     )
 
     response = requests.get(url)
-    data = response.json()
+    
+    print("STATUS CODE:", response.status_code)
+    print("RAW RESPONSE:", response.text[:500])  # show partial response
 
-    articles = data.get("articles", [])
+    try:
+        data = response.json()
+    except:
+        print("JSON ERROR")
+        return []
+
+    articles = data.get("articles")
+
+    if not articles:
+        print("NO ARTICLES FROM API")
+        return []
+
     print("ARTICLES LENGTH:", len(articles))
 
     news_list = []
