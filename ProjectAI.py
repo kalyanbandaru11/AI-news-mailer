@@ -13,13 +13,13 @@ SEND_TIME = "09:00"   # daily time
 # ==================================================
 def get_news():
     url = (
-        "https://newsapi.org/v2/everything?"
-        "q=AI OR artificial intelligence"
-        "&sortBy=publishedAt"
-        "&language=en"
-        "&pageSize=10"
-        f"&apiKey={NEWS_API_KEY}"
-    )
+    "https://newsapi.org/v2/everything?"
+    "q=AI OR artificial intelligence OR ChatGPT OR OpenAI"
+    "&sortBy=publishedAt"
+    "&language=en"
+    "&pageSize=20"
+    f"&apiKey={NEWS_API_KEY}"
+)
 
     response = requests.get(url)
     data = response.json()
