@@ -22,9 +22,9 @@ def get_news():
     )
 
     response = requests.get(url)
-    
+
     print("STATUS CODE:", response.status_code)
-    print("RAW RESPONSE:", response.text[:500])  # show partial response
+    print("RAW RESPONSE:", response.text[:200])
 
     try:
         data = response.json()
