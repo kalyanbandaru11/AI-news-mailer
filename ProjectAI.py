@@ -2,7 +2,7 @@ import requests
 import smtplib
 from email.mime.text import MIMEText
 import os
-from datetime import datetime, timedelta
+
 
 # ===================== CONFIG =====================
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
