@@ -29,4 +29,4 @@ Add the following secrets:
 ## ▶️ Run Locally
 ```bash
 pip install -r requirements.txt
-python ProjectAI.py
+python app.py
