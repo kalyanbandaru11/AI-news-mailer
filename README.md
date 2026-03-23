@@ -30,3 +30,10 @@ Add the following secrets:
 ```bash
 pip install -r requirements.txt
 python app.py
+
+## 🚀 Future Improvements
+
+- Improve reliability of API calls and email delivery  
+- Add better filtering for more accurate and relevant news  
+- Support multiple topics (AI, stocks, tech)  
+- Add user customization for email preferences  
