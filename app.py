@@ -60,7 +60,7 @@ def get_news():
 
 def send_email(content):
     try:
-        msg = MIMEText(content)
+        msg = MIMEText(content, "plain", "utf-8")
         msg["Subject"] = "Daily AI News (Last 24 Hours)"
         msg["From"] = SENDER_EMAIL
         msg["To"] = RECEIVER_EMAIL
